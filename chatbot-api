@@ -1,0 +1,32 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+conversation_history = {}
+
+
+@app.route('/chatbot', methods=['POST'])
+def chatbot():
+    data = request.get_json()
+    user_message = data['message']
+
+    # Her   e you would call your chatbot logic to generate a response based on user_message
+    # For demonstration purposes, let's just echo the user's message
+    response = {'response': user_message}
+
+    # Store the conversation history
+    conversation_history[len(conversation_history) + 1] = {'user': user_message, 'bot': response['response']}
+
+    return jsonify(response)
+
+
+@app.route('/conversation_history', methods=['GET'])
+def get_conversation_history():
+    return jsonify(conversation_history)
+
+
+#AIzaSyDgNL1n-rkp-QDq-kepMvunZquHbV8RcLo
+#AIzaSyCG8pJg_q7_J71qa_zX2gzgI-3yH8AEVj8
+
+if __name__ == '__main__':
+    app.run(debug=True)
