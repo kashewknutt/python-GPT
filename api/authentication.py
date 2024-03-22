@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
-from bson import json_util
-import bcrypt
 
 app = Flask(__name__)
+
+try:
+    from bson import json_util
+except ImportError:
+    json_util = None
+
+import bcrypt
 
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://2022sanketdhuri:WKm6WEKmHe80Mgql@cluster0.91iy5uo.mongodb.net/python')
