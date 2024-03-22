@@ -1,12 +1,8 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
+import json
 
 app = Flask(__name__)
-
-try:
-    from bson import json_util
-except ImportError:
-    json_util = None
 
 import bcrypt
 
