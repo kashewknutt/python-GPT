@@ -10,14 +10,17 @@ def send_message(chatbot, entry, chat_area):
         return
     try:
         response = chatbot.send_prompt(user_input)
-        print("Response from API:", response)  # Debugging print
+        chat_area.config(state=tk.NORMAL)  # Enable editing temporarily
         chat_area.insert(tk.END, f'Rajat-AI: {response}\n')
+        chat_area.config(state=tk.DISABLED)  # Disable editing again
         chat_area.yview(tk.END)
     except Exception as e:
-        print("Error:", e)  # Debugging print
+        chat_area.config(state=tk.NORMAL)
         chat_area.insert(tk.END, f'Error: {e}\n')
+        chat_area.config(state=tk.DISABLED)
         chat_area.yview(tk.END)
     entry.delete(0, tk.END)
+
 
 def main():
     config = ConfigParser()
@@ -43,5 +46,4 @@ def main():
 
     root.mainloop()
 
-if __name__ == "__main__":
-    main()
+main()
