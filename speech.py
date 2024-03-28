@@ -42,7 +42,7 @@ class ChatBotGUI:
         
         bot_response = self.get_bot_response(user_input)
         self.display_message(bot_response, "Python-GPT:")
-        self.speak_response()
+        self.speak(bot_response)
 
     def display_message(self, message, sender):
         self.message_list.insert(tk.END, f"{sender}: {message}")
